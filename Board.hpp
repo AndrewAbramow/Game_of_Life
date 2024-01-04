@@ -10,6 +10,8 @@ public:
 	int GetX(int x);
 	int GetY(int y);
 	void NextGen();
+	void WriteToFile(int iter_numb);
+	void ReadFromFile();
 private:
 	static const int width = 20;
 	static const int height = 20;

@@ -3,6 +3,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
+#include <string>
 
 Board::Board() {
 	// initialize field
@@ -54,4 +56,41 @@ void Board::NextGen() {
 			}
 		}
 	}
+}
+
+void Board::WriteToFile(int iter_numb) {
+	std::fstream out_file("out.txt", std::ios::out | std::ios::app);
+	if(out_file.is_open()) {
+	out_file<<"Iteration number: "<<iter_numb<<'\n';
+	out_file<<std::string(width, '_')<<'\n';
+	for (const auto& i: curr_field)  {
+        for (const auto& j: i) {
+        	if (j) out_file<<'*';
+        	else out_file<<'-';
+        }
+    	out_file<<'\n';
+    }
+    out_file<<std::string(width, '_')<<'\n'<<'\n';
+	out_file.close();
+	} else std::cout<<"Unable to open file\n";	
+}
+
+void Board::ReadFromFile() {
+	curr_field = {{0}};
+	std::fstream in_file("in.txt", std::ios::in);
+	char c;
+	if(in_file.is_open()) {
+		for (auto& i: curr_field)  {
+	       	for (auto& j: i) {
+	        	in_file.get(c);
+	        	if(c == '\n') in_file.get(c);
+	        	if (c == '*') j = 1;
+	        	else j = 0;
+	       	}
+	   	}	
+	}
+	if(!in_file.eof() && in_file.fail()) {
+		std::cerr<<"error reading file\n";
+	}
+	in_file.close();
 }
