@@ -13,6 +13,6 @@ cmake --build build
 ./build/life_sim
 ```
 ## Docs
-![alt text](Docs/)
+[Docs](Docs/)
 ## Useful Resources
 [Wiki](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
