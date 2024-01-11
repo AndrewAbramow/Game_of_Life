@@ -9,8 +9,9 @@ The Game of Life is a cellular automaton devised by the British mathematician Jo
 ```
 git clone https://github.com/AndrewAbramow/Game_of_Life
 cd Game_of_Life
-cmake --build build
-./build/life_sim
+cmake .
+cmake --build .
+./life_sim
 ```
 ## Docs
 [Docs](Docs/)
